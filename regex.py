@@ -44,3 +44,20 @@ re.compile(r'(\d) {3,5}?') # will try to get shortest match possible(close to 3)
 re.compile(r'[aeiou]')
 # ^ is negative character class; matches everything not in class
 re.compile(r'[^aeiou]')
+
+# ^ used to indicate beginning substring
+re.compile(r'^Hello!') # string starts w/ Hello!
+# $ used to indicate ending substring
+re.compile(r'world!$') # string ends w/ world!
+# Use combination of ^ and $ to match entire string
+
+# wildcard . means any character except newline
+# common use: .* matches any pattern
+    # Ex: splice out name from string
+    nameRegex = re.compile(r'First name: (.*) Last name (.*)') # using findall() returns list of the first and last name match
+# greedy vs nongreedy: .* and .*?, respectively
+# You can modify the .* search with a 2nd parameter to .compile()
+    # for .* to match EVERYTHING(including \n), pass in re.DOTALL
+    re.compile(r'.*', re.DOTALL) # includes newline in match
+    # To ignore case, use re.IGNORECASE
+    re.compile(r'.*', re.I) # short-form of above
