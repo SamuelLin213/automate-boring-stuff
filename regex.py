@@ -61,3 +61,17 @@ re.compile(r'world!$') # string ends w/ world!
     re.compile(r'.*', re.DOTALL) # includes newline in match
     # To ignore case, use re.IGNORECASE
     re.compile(r'.*', re.I) # short-form of above
+    # Use | character to pass in multiple parameter
+    re.compile(r'.*', re.I | re.DOTALL)
+
+namesReg = re.compile(r'Agent \w+')
+namesReg.sub('REACTED', 'Agent Alice gave info to Agent Bob') # replaces Agent Alice and Agent Bob to REACTED
+# You can use groupings to display just first letter of name
+namesReg = re.compile(r'Agent (\w)\w*') # places first letter of name into group
+namesReg.sub(r'Agent \1*****', 'Agent Alice gave info to Agent Bob') # Displays only first group, which is the first letter of name
+
+# Verbose mode; allows you to add comments inside and ignore whitespace, increase readability
+re.compile(r'''
+(\d\d\d-) | # area code w/o parens
+(\(\d\d\d\)) # or area code w/ just parens
+''', re.VERBOSE)
